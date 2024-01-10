@@ -866,11 +866,17 @@ class eCommerceRemoteAccessWoocommerce
 			foreach ($page as $product) {
 				// Don't synchronize the variation parent
 				if (empty($product['variations']) || !empty($product['parent_id'])) {
-					$data = $this->convertProductDataIntoProcessedData($product);
-					if (!is_array($data)) {
-						$this->errors = array_merge(array($langs->trans('ECommerceErrorWhenConvertProductData', $product['id'])), $this->errors);
-						return false;
+					$res = 0;
+					if (!empty($product['sku'])) {
+						$is_product = new Product($this->db);
+						$res = $is_product->fetch('', $product['sku']);
 					}
+					if ($res <= 0){
+						$data = $this->convertProductDataIntoProcessedData($product);
+						if (!is_array($data)) {
+							$this->errors = array_merge(array($langs->trans('ECommerceErrorWhenConvertProductData', $product['id'])), $this->errors);
+							return false;
+						}
 					$products[] = $data;
 				}
 
