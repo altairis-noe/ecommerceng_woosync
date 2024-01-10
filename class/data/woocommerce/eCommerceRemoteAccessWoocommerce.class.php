@@ -871,12 +871,13 @@ class eCommerceRemoteAccessWoocommerce
 						$is_product = new Product($this->db);
 						$res = $is_product->fetch('', $product['sku']);
 					}
-					if ($res <= 0){
+					if ($res <= 0) {
 						$data = $this->convertProductDataIntoProcessedData($product);
 						if (!is_array($data)) {
 							$this->errors = array_merge(array($langs->trans('ECommerceErrorWhenConvertProductData', $product['id'])), $this->errors);
 							return false;
 						}
+					}
 					$products[] = $data;
 				}
 
