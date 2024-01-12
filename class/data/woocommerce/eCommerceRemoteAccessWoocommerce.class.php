@@ -1519,7 +1519,7 @@ class eCommerceRemoteAccessWoocommerce
 						if (!is_array($product_data)) {
 							return false;
 						} elseif (!empty($product_data)) {
-							$label = $product_data['name'];
+							$label = empty($label) ? $product_data['name'] : $label;
 							$description = $this->replace4byte($product_data['description']); // short_description
 
 							if (empty($label) || empty($description) && $item['variation_id'] > 0) {
