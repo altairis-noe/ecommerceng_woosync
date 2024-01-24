@@ -131,7 +131,7 @@ if ($search_remove_btn) {
 	$search_webhook_resource = '';
 	$search_webhook_event = '';
 	$search_webhook_signature = '';
-	$search_webhook_source = -1;
+	$search_webhook_source = '';
 	$search_webhook_data = '';
 	$search_error_msg = '';
 	$search_datep_start = '';
@@ -218,7 +218,7 @@ if ($search_webhook_resource)       $sql .= natural_search('epw.webhook_resource
 if ($search_webhook_event)          $sql .= natural_search('epw.webhook_event', $search_webhook_event);
 if ($search_webhook_signature)      $sql .= natural_search('epw.webhook_signature', $search_webhook_signature);
 if ($search_webhook_source)         $sql .= natural_search('epw.webhook_source', $search_webhook_source);
-if ($search_webhook_data)           $sql .= natural_search('epw.webhook_data', $search_webhook_data);
+if ($search_webhook_data)           $sql .= natural_search('epw.webhook_data', $db->escape($search_webhook_data)); //
 if ($search_error_msg)           	$sql .= natural_search('epw.error_msg', $search_error_msg);
 if ($search_datep_start)            $sql .= " AND epw.datep >= '" . $db->idate($search_datep_start) . "'";
 if ($search_datep_end)              $sql .= " AND epw.datep <= '" . $db->idate($search_datep_end) . "'";
