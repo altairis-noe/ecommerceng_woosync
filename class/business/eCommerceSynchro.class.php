@@ -3379,7 +3379,7 @@ class eCommerceSynchro
 								}
 
 								$this->initECommerceProduct();
-							} elseif ($result > 0 && $this->eCommerceProduct->remote_id !== $product_data['remote_id']) {
+							} elseif ($result > 0 && $this->eCommerceProduct->remote_id !== $product_data['remote_id'] && $product_data['remote_datas']['lang'] == 'fr') {
 								$check = false;
 								// Check same parent if option 'all variations in one product' set
 								if ($product_variation_mode_all_to_one && preg_match('/^([^|]+)/', $this->eCommerceProduct->remote_id, $matches1) && preg_match('/^([^|]+)/', $product_data['remote_id'], $matches2)) {
