@@ -3617,8 +3617,8 @@ class eCommerceSynchro
                                         $local_warehouse_id = isset($remote_warehouses[$remote_warehouse_id]['warehouse_id']) && $remote_warehouses[$remote_warehouse_id]['warehouse_id'] > 0 ? $remote_warehouses[$remote_warehouse_id]['warehouse_id'] : 0;
                                         if (empty($local_warehouse_id)) {
 											dol_syslog(__METHOD__ . ' Warehouse not configured for remote warehouse ID ' . $remote_warehouse_id . ' so we don\'t process this remote warehouse', LOG_WARNING);
-//                                            $error++;
-//                                            $this->errors[] = 'Error - Unknown remote warehouse : ' . $remote_warehouse_id;
+                                        //    $error++;
+                                        //    $this->errors[] = 'Error - Unknown remote warehouse : ' . $remote_warehouse_id;
                                         } else {
                                             $current_stock = isset($product->stock_warehouse[$local_warehouse_id]->real) ? $product->stock_warehouse[$local_warehouse_id]->real : 0;
                                             $new_warehouses_stock[$local_warehouse_id] = price2num($stock - $current_stock);
@@ -3675,7 +3675,7 @@ class eCommerceSynchro
 						}
 
 						// Set category
-						if (!$error) {
+						if (!$error && $product_data['remote_datas']['lang'] == 'fr') {
 							if (!($this->eCommerceSite->fk_cat_product > 0)) {
 								$this->errors[] = $this->langs->trans('ECommerceErrorProductCategoryNotConfigured', $this->eCommerceSite->id);
 								$error++;
